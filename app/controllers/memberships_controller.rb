@@ -18,7 +18,7 @@ class MembershipsController < ApplicationController
 
   def filter_clubs
     beer_clubs = BeerClub.all
-    filtered_clubs = beer_clubs.reject { |club| club.users.include?(current_user) }
+    beer_clubs.reject { |club| club.users.include?(current_user) }
   end
 
   # GET /memberships/1/edit
