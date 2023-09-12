@@ -1,7 +1,5 @@
-require 'pry-byebug'
-
 class RatingsController < ApplicationController
-#  before_action :set_rating, only: %i[ show edit update destroy ]
+  #  before_action :set_rating, only: %i[ show edit update destroy ]
 
   def index
     @ratings = Rating.all
@@ -13,8 +11,15 @@ class RatingsController < ApplicationController
   end
 
   def create
-    Rating.create params.require(:rating).permit(:score, :beer_id)
-    redirect_to ratings_path
+    @rating = Rating.new params.require(:rating).permit(:score, :beer_id)
+    @rating.user = current_user
+
+    if @rating.save
+      redirect_to user_path current_user
+    else
+      @beers = Beer.all
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def destroy
@@ -22,5 +27,4 @@ class RatingsController < ApplicationController
     rating.delete
     redirect_to ratings_path
   end
-
 end

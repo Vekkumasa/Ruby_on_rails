@@ -1,0 +1,32 @@
+<p style="color: green"><%= notice %></p>
+
+<h2>Username: </h2>
+<p>
+  <%= @user.username %>
+</p>
+
+<% if @user.ratings.empty? %>
+  User has not given any ratings yet.
+<% else %>
+  <%= @user.average_rating(@user.username) %>
+<% end %>
+
+<div id="ratings">
+  <p><strong>Ratings:</strong></p>
+  <% @user.ratings.each do |rating| %>
+    <div id="<%= dom_id rating %>">
+      <p>
+        <%= rating.beer.name %>
+        <%= rating.score %>
+        <%= link_to 'delete', rating, data: { "turbo-method": :delete } %>
+      </p>
+    </div>
+  <% end %>
+</div>
+
+
+  <%= link_to "Edit this user", edit_user_path(@user) %> |
+  <%= link_to "Back to users", users_path %>
+
+  <%= button_to "Destroy this user", @user, method: :delete %>
+</div>
