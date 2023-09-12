@@ -5,6 +5,17 @@
   <%= @user.username %>
 </p>
 
+<div id="memberships">
+  <p><strong>memberships:</strong></p>
+  <% @user.beer_clubs.each do |beer_club| %>
+    <div id="<%= dom_id beer_club %>">
+      <p>
+        <%= link_to beer_club.name, beer_club %>
+      </p>
+    </div>
+  <% end %>
+</div>
+
 <% if @user.ratings.empty? %>
   User has not given any ratings yet.
 <% else %>
@@ -18,15 +29,19 @@
       <p>
         <%= rating.beer.name %>
         <%= rating.score %>
-        <%= link_to 'delete', rating, data: { "turbo-method": :delete } %>
+        <% if @user == current_user %>
+          <%= link_to "Delete", rating, data: {turbo_method: :delete} %>
+        <% end %>
       </p>
     </div>
   <% end %>
 </div>
 
+  <%= link_to "Back to users", users_path %><br>
 
-  <%= link_to "Edit this user", edit_user_path(@user) %> |
-  <%= link_to "Back to users", users_path %>
+  <% if @user == current_user %>
+    <%= link_to "Edit this user", edit_user_path(@user) %> 
+    <%= button_to "Destroy this user", @user, method: :delete %>
+  <% end %>
 
-  <%= button_to "Destroy this user", @user, method: :delete %>
 </div>

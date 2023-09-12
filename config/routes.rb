@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :memberships
   resources :beer_clubs
   resource :session, only: [:new, :create, :destroy]
   get 'signin', to: 'sessions#new'

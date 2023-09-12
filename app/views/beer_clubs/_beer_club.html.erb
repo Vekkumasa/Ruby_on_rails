@@ -14,4 +14,11 @@
     <%= beer_club.city %>
   </p>
 
+  <p>
+    <strong>Members:</strong>
+    <% beer_club.users.each do |user| %>
+      <%= link_to user.username, user %>
+    <% end %>
+  </p>
+
 </div>
