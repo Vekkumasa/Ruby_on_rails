@@ -6,4 +6,4 @@ module RatingAverage
     pluralized_rating = "rating".pluralize(ratings.length())
     return "#{beer_or_brewery} has #{ratings.length()} #{pluralized_rating} with an average of #{sum / ratings.length()}"
   end
- end  
+end
