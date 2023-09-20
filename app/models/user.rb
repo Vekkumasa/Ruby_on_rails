@@ -22,4 +22,10 @@ class User < ApplicationRecord
 
     errors.add(:password, "must contain at least one capitalized letter and at least one number")
   end
+
+  def favorite_beer
+    return nil if ratings.empty?
+
+    ratings.order(score: :desc).limit(1).first.beer
+  end
 end
