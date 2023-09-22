@@ -2,6 +2,11 @@ class ApplicationController < ActionController::Base
   # määritellään, että metodi current_user tulee käyttöön myös näkymissä
   helper_method :current_user
   helper_method :delete_session
+  helper_method :add_latest_search
+
+  def add_latest_search(city)
+    session[:latest_search] = city
+  end
 
   def current_user
     return nil if session[:user_id].nil?

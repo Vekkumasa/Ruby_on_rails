@@ -9,6 +9,20 @@ class BeerClubsController < ApplicationController
 
   # GET /beer_clubs/1 or /beer_clubs/1.json
   def show
+    @membership = Membership.new
+    @membership.beer_club = @beer_club
+    @membership.user = current_user
+
+    current_membership = user_already_in_club
+    if current_membership
+      @current_membership = current_membership.id
+      @user_already_in_club = true
+    else
+      @current_membership = 99
+      @user_already_in_club = false
+    end
+    
+    
   end
 
   # GET /beer_clubs/new
@@ -63,6 +77,12 @@ class BeerClubsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_beer_club
     @beer_club = BeerClub.find(params[:id])
+  end
+
+  def user_already_in_club
+    user_id = current_user.id
+    beer_club_members = Membership.where beer_club_id: @beer_club.id
+    beer_club_members.find_by user_id: user_id
   end
 
   # Only allow a list of trusted parameters through.

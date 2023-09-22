@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'places', to: 'places#index'
+  resources :places, only: [:index, :show]
   post 'places', to: 'places#search'
   resources :memberships
   resources :beer_clubs
