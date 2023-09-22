@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'places', to: 'places#index'
+  post 'places', to: 'places#search'
   resources :memberships
   resources :beer_clubs
   resource :session, only: [:new, :create, :destroy]
