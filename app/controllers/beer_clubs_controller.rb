@@ -21,8 +21,6 @@ class BeerClubsController < ApplicationController
       @current_membership = 99
       @user_already_in_club = false
     end
-    
-    
   end
 
   # GET /beer_clubs/new
@@ -82,7 +80,7 @@ class BeerClubsController < ApplicationController
   def user_already_in_club
     user_id = current_user.id
     beer_club_members = Membership.where beer_club_id: @beer_club.id
-    beer_club_members.find_by user_id: user_id
+    beer_club_members.find_by user_id:
   end
 
   # Only allow a list of trusted parameters through.

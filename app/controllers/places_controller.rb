@@ -19,13 +19,12 @@ class PlacesController < ApplicationController
 
     bar = bar_data.find { |bar| bar.id == id }
 
-    if bar
-      @name = bar.name
-      @status = bar.status
-      @street = bar.street
-      @city = bar.city
-      @zip = bar.zip
-    end
-  end
+    return unless bar
 
+    @name = bar.name
+    @status = bar.status
+    @street = bar.street
+    @city = bar.city
+    @zip = bar.zip
+  end
 end
