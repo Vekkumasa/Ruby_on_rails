@@ -24,4 +24,4 @@
 </div>
 
 <%= link_to "List of breweries", breweries_path %><br/>
-<%= link_to "New beer", new_beer_path %>
+<%= link_to "New beer", new_beer_path if current_user %>

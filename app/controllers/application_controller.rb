@@ -12,4 +12,8 @@ class ApplicationController < ActionController::Base
   def delete_session
     session[:user_id] = nil
   end
+
+  def ensure_that_signed_in
+    redirect_to signin_path, notice: 'you should be signed in' if current_user.nil?
+  end
 end
