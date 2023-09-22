@@ -61,4 +61,30 @@ describe "User" do
     page.all('button')[1].click
     expect(Rating.count).to eq(1)
   end
+
+  it "User page shows favorite style" do
+    sign_in(username: "Pekka", password: "Foobar1")
+    user = User.find_by username: "Pekka"
+
+    brewery = FactoryBot.create(:brewery, name: "Koff") 
+    beer = FactoryBot.create(:beer, name: "Karhu", brewery: brewery)
+    rating = FactoryBot.create(:rating, score: 20, user: user, beer: beer)
+    rating = FactoryBot.create(:rating, score: 20, user: user, beer: beer)
+    visit user_path(user.id)
+
+    expect(page).to have_content "Pekka's favorite style: Lager"
+  end
+
+  it "User page shows favorite brewery" do
+    sign_in(username: "Pekka", password: "Foobar1")
+    user = User.find_by username: "Pekka"
+
+    brewery = FactoryBot.create(:brewery, name: "Koff") 
+    beer = FactoryBot.create(:beer, name: "Karhu", brewery: brewery)
+    rating = FactoryBot.create(:rating, score: 20, user: user, beer: beer)
+    rating = FactoryBot.create(:rating, score: 20, user: user, beer: beer)
+    visit user_path(user.id)
+
+    expect(page).to have_content "Pekka's favorite brewery: Koff"
+  end
 end
