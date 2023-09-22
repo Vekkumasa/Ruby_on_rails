@@ -1,0 +1,1 @@
+[![Maintainability](https://api.codeclimate.com/v1/badges/aaf74b79ed1b2db0dc7a/maintainability)](https://codeclimate.com/github/Vekkumasa/Ruby_on_rails/maintainability)
