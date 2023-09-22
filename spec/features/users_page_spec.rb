@@ -72,7 +72,7 @@ describe "User" do
     rating = FactoryBot.create(:rating, score: 20, user: user, beer: beer)
     visit user_path(user.id)
 
-    expect(page).to have_content "Pekka's favorite style: Lager"
+    expect(page).to have_content "Pekka's favorite style: IPA"
   end
 
   it "User page shows favorite brewery" do

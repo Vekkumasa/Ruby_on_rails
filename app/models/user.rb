@@ -54,7 +54,7 @@ class User < ApplicationRecord
       end
     end
 
-    most_rated_style
+    most_rated_style.name
   end
 
   def favorite_brewery
