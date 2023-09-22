@@ -19,7 +19,9 @@
 <% if @user.ratings.empty? %>
   User has not given any ratings yet.
 <% else %>
-  <%= @user.average_rating(@user.username) %>
+  <%= @user.average_rating(@user.username) %> <br/>
+  <%= @user.username %>'s favorite style: <%= @user.favorite_style %> <br/>
+  <%= @user.username %>'s favorite brewery: <%= @user.favorite_brewery %>
 <% end %>
 
 <div id="ratings">
