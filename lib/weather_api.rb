@@ -2,14 +2,11 @@ class WeatherApi
   def self.get_weather_in(city)
     encoded_city = ERB::Util.url_encode(city.downcase)
     url = "http://api.weatherstack.com/current?access_key=#{key}&query=#{encoded_city}"
-
     response = HTTParty.get url
 
     return {} if response.include?("success")
 
-    puts response
     current = response.parsed_response["current"]
-
     {
       city:,
       temperature: current["temperature"],

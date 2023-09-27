@@ -17,7 +17,14 @@ class Brewery < ApplicationRecord
              errors.add(:year, "Year can't be in the future")
            end
 
+  scope :active, -> { where active: true }
+  scope :retired, -> { where active: [nil, false] }
+
   def ratings?
     !ratings.empty?
+  end
+
+  def self.top(amount)
+    Brewery.order(average_rating: :desc).limit(amount)
   end
 end

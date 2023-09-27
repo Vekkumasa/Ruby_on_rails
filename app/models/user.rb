@@ -23,6 +23,10 @@ class User < ApplicationRecord
     errors.add(:password, "must contain at least one capitalized letter and at least one number")
   end
 
+  def self.most_ratings
+    User.joins(:ratings).group('users.id').order('COUNT(ratings.id) DESC').limit(3)
+  end
+
   def favorite_beer
     return nil if ratings.empty?
 

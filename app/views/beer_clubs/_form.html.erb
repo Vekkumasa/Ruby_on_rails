@@ -12,21 +12,21 @@
   <% end %>
 
   <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+    <label for="name" class="form-label">Name</label>
+    <input type="text" class="form-control" name="beer_club[name]">
   </div>
 
   <div>
-    <%= form.label :founded, style: "display: block" %>
-    <%= form.number_field :founded %>
+    <label for="name" class="form-label">Founded</label>
+    <input type="number" class="form-control" name="beer_club[founded]">
   </div>
 
   <div>
-    <%= form.label :city, style: "display: block" %>
-    <%= form.text_field :city %>
+    <label for="name" class="form-label">City</label>
+    <input type="text" class="form-control" name="beer_club[city]">
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit "Create beer club", class:"btn btn-primary" %>
   </div>
 <% end %>

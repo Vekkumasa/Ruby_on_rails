@@ -16,4 +16,8 @@ class Beer < ApplicationRecord
 
     ratings.map{ :score }.sum / ratings.count.to_f
   end
+
+  def self.top(amount)
+    Beer.order(average_rating: :desc).limit(amount)
+  end
 end

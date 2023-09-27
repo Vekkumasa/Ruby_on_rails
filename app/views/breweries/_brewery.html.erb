@@ -18,7 +18,7 @@
   </p>
 
   <% if brewery.ratings? %>
-    <%= brewery.average_rating(brewery.name) %>
+    Brewery has average of: <%= brewery.average_rating %>
   <% else %>
     Brewery has not yet been rated!
   <% end %>

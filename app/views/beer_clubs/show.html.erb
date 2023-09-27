@@ -1,4 +1,3 @@
-<p style="color: green"><%= notice %></p>
 
 <%= render @beer_club %>
 
@@ -10,7 +9,7 @@
   <%= form_with(model: @membership) do |form| %>
     <%= form.hidden_field :user_id %>
     <%= form.hidden_field :beer_club_id %>
-    <%= form.submit "Join Club" %>
+    <%= form.submit "Join Club", class:"btn btn-primary" %>
   <% end %>
 <% end %>
 
@@ -20,7 +19,7 @@
   <%= form_with(model: @membership, url: membership_path(@current_membership), method: :delete) do |form| %>
     <%= form.hidden_field :beer_club_id, value: @beer_club.id %>
     <%= form.hidden_field :user_id, value: current_user.id %>
-    <%= form.submit "End the membership" %>
+    <%= form.submit "End the membership", class:"btn btn-danger" %>
   <% end %>
 <% end %>
 
