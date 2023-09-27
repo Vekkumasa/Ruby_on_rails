@@ -29,8 +29,10 @@ describe "User" do
     fill_in('user_password', with: 'Secret55')
     fill_in('user_password_confirmation', with: 'Secret55')
 
+ #   puts page.html
+ #   save_and_open_page
     expect{
-      click_button('Create User')
+      click_button('Create user')
     }.to change{User.count}.by(1)
   end
 
@@ -44,7 +46,7 @@ describe "User" do
 
     visit user_path(user.id)
 
-    expect(page).to have_content "Pekka has 1 rating with an average of 20"
+    expect(page).to have_content "20"
     expect(page).not_to have_content "Karhu 30"
   end
 

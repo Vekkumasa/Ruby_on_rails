@@ -37,11 +37,19 @@
   <% end %>
 </div>
 
-  <%= link_to "Back to users", users_path %><br>
-
-  <% if @user == current_user %>
-    <%= link_to "Edit this user", edit_user_path(@user) %> 
-    <%= button_to "Destroy this user", @user, method: :delete %>
+<% if current_user&.admin? && @user != current_user %>
+  <% if @user.closed? %>
+    <%= link_to "Open account", toggle_closed_user_path(@user.id), data: {turbo_method: "post"}, class: "btn btn-primary" %>
+  <% else %>
+    <%= link_to "Close account", toggle_closed_user_path(@user.id), data: {turbo_method: "post"}, class: "btn btn-danger" %>
   <% end %>
+<% end %>
+
+<%= link_to "Back to users", users_path %><br>
+
+<% if @user == current_user %>
+  <%= link_to "Edit this user", edit_user_path(@user) %> 
+  <%= button_to "Destroy this user", @user, method: :delete %>
+<% end %>
 
 </div>

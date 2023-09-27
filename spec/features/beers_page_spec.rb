@@ -14,12 +14,10 @@ describe "Beers page" do
     it "Beer is added into db with valid values" do 
       fill_in('beer_name', with: 'Beer')
       select('IPA', from: 'beer_style_id')
-
-    #  puts page.html
       select("Brewery", from: 'beer_brewery_id')
-      
+         
       expect{
-        click_button('Create Beer')
+        click_button('Create beer')
       }.to change{Beer.count}.by(1)
     end
 
@@ -27,9 +25,9 @@ describe "Beers page" do
       fill_in('beer_name', with: '')
       select('IPA', from: 'beer_style_id')
       select("Brewery", from: 'beer_brewery_id')
-      click_button('Create Beer')
+      click_button('Create beer')
 
-     # save_and_open_page
+    #  save_and_open_page
       expect(page).to have_content "Name can't be blank"
       expect(Beer.count).to eq(0)
     end

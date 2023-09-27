@@ -23,7 +23,7 @@ describe "Rating" do
 
     expect(user.ratings.count).to eq(1)
     expect(beer1.ratings.count).to eq(1)
-    expect(beer1.average_rating).to eq("beer has 1 rating with an average of 15")
+    expect(beer1.average_rating).to eq(15.0)
   end
 
   it "Ratings are shown" do
