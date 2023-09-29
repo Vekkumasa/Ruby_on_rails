@@ -1,17 +1,15 @@
-<h2>Username: </h2>
-<p>
-  <%= @user.username %>
-</p>
+<h2>Username: <%= @user.username %> </h2>
 
 <div id="memberships">
   <p><strong>memberships:</strong></p>
-  <% @user.beer_clubs.each do |beer_club| %>
-    <div id="<%= dom_id beer_club %>">
-      <p>
-        <%= link_to beer_club.name, beer_club %>
-      </p>
-    </div>
-  <% end %>
+  <ul class="list-group">
+    <% @user.beer_clubs.each do |beer_club| %>
+        <li class="list-group-item list-group-item-action">
+          <%= link_to beer_club.name, beer_club %>
+        </li>
+    <% end %>
+  </ul>
+  <br/>
 </div>
 
 <% if @user.ratings.empty? %>
@@ -23,18 +21,22 @@
 <% end %>
 
 <div id="ratings">
+  <br/>
   <p><strong>Ratings:</strong></p>
-  <% @user.ratings.each do |rating| %>
-    <div id="<%= dom_id rating %>">
-      <p>
-        <%= rating.beer.name %>
-        <%= rating.score %>
-        <% if @user == current_user %>
-          <%= button_to 'delete', rating, method: :delete, form: { style: 'display:inline-block;',  data: { 'turbo-confirm': 'Are you sure?' } } %>
-        <% end %>
-      </p>
-    </div>
-  <% end %>
+  <table class="table table-hover table-striped">
+    <thead><th>Beer name</th><th>Score</th><th>Delete</th></thead>
+    <tbody>
+      <% @user.ratings.each do |rating| %>
+          <tr>
+            <td><%= rating.beer.name %></td>
+            <td><%= rating.score %></td>
+            <% if @user == current_user %>
+              <td><%= button_to 'delete', rating, method: :delete, form: { style: 'display:inline-block;',  data: { 'turbo-confirm': 'Are you sure?' } } %></td>
+            <% end %>
+          </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
 
 <% if current_user&.admin? && @user != current_user %>

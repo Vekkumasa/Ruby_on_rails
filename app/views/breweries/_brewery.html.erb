@@ -1,21 +1,33 @@
-<div id="<%= dom_id brewery %>">
-  <h2>
-    <strong>Name:</strong>
-    <%= brewery.name %>
-  </h2>
+<% cache @brewery do %>
+  <div id="<%= dom_id brewery %>">
+    <h2>
+      <strong>Name:</strong>
+      <%= brewery.name %>
+    </h2>
 
-  <p>
-    <strong>Year:</strong>
-    <i> <%= "Established in #{brewery.year}" %></i>
-  </p>
+    <p>
+      <strong>Year:</strong>
+      <i> <%= "Established in #{brewery.year}" %></i>
+    </p>
 
-  <p>Beers count: <%= @brewery.beers.count %></p>
+    <p>Beers count: <%= @brewery.beers.count %></p>
 
-  <p>
-    <% brewery.beers.each do |beer| %>
-      <%= link_to beer.name, beer %>
-    <% end %>
-  </p>
+    <table class="table table-hover table-striped">
+      <thead>
+        <th>Name</th><th>Style</th><th>Rating</th>
+      </thead>
+      <tbody>
+        <% brewery.beers.each do |beer| %>
+          <tr>
+              <td><%= beer.name %></td>
+              <td><%= beer.style.name %></td>
+              <td><%= round(beer.average_rating) %></td>
+            </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
 
   <% if brewery.ratings? %>
     Brewery has average of: <%= brewery.average_rating %>
@@ -25,4 +37,4 @@
   
   <%= link_to "change activity", toggle_activity_brewery_path(@brewery.id), data: {turbo_method: "post"}, class: "btn btn-primary" %>
 
-</div>
+

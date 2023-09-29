@@ -1,28 +1,29 @@
 <h1>Beers</h1>
 
-<div id="beers">
-  <table class="table table-hover table-striped">
-    <thead>
-      <tr>
-        <th><%= link_to "Name", beers_path(order: "name")%></th>
-        <th><%= link_to "Style", beers_path(order: "style")%></th>
-        <th><%= link_to "Brewery", beers_path(order: "brewery")%></th>
-        <th><%= link_to "Rating", beers_path(order: "rating")%></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @beers.each do |beer| %>
+<% cache "beerlist-#{@order}", skip_digest: true do %>
+  <div id="beers">
+    <table class="table table-hover table-striped">
+      <thead>
         <tr>
-          <td> <%= link_to beer.name, beer %> </td>
-          <td> <%= link_to beer.style, beer %> </td>
-          <td> <%= link_to beer.brewery.name, beer %> </td>
-          <td> <%= beer.average_rating %> </td>
+          <th><%= link_to "Name", beers_path(order: "name")%></th>
+          <th><%= link_to "Style", beers_path(order: "style")%></th>
+          <th><%= link_to "Brewery", beers_path(order: "brewery")%></th>
+          <th><%= link_to "Rating", beers_path(order: "rating")%></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-  
-</div>
+      </thead>
+      <tbody>
+        <% @beers.each do |beer| %>
+          <tr>
+            <td> <%= link_to beer.name, beer %> </td>
+            <td> <%= link_to beer.style, beer %> </td>
+            <td> <%= link_to beer.brewery.name, beer %> </td>
+            <td> <%= beer.average_rating %> </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>   
+  </div>
+<% end %>
 
 <%= link_to "List of breweries", breweries_path %><br/>
 <%= link_to "New beer", new_beer_path if current_user %>

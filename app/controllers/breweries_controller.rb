@@ -28,6 +28,7 @@ class BreweriesController < ApplicationController
 
   # POST /breweries or /breweries.json
   def create
+    expire_fragment('brewerylist')
     @brewery = Brewery.new(brewery_params)
 
     respond_to do |format|
@@ -43,6 +44,7 @@ class BreweriesController < ApplicationController
 
   # PATCH/PUT /breweries/1 or /breweries/1.json
   def update
+    expire_fragment('brewerylist')
     respond_to do |format|
       if @brewery.update(brewery_params)
         format.html { redirect_to brewery_url(@brewery), notice: "Brewery was successfully updated." }
@@ -56,6 +58,7 @@ class BreweriesController < ApplicationController
 
   # DELETE /breweries/1 or /breweries/1.json
   def destroy
+    expire_fragment('brewerylist')
     @brewery.destroy
 
     respond_to do |format|
