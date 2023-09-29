@@ -2,6 +2,7 @@ class RatingsController < ApplicationController
   #  before_action :set_rating, only: %i[ show edit update destroy ]
 
   def index
+    # Teht: 7.12 lisätty index.html.erb expiroituva caching
     @ratings = Rating.all
     @recent = Rating.recent
     @best_breweries = Brewery.top(3)
