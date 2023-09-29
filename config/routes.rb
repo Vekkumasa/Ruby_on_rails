@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new'
   root 'breweries#index'
   resources :beers
+  get 'beerlist', to: 'beers#list'
   resources :breweries
+  get 'brewerylist', to: 'breweries#list'
   resources :breweries do
     post 'toggle_activity', on: :member
   end
